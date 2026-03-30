@@ -35,25 +35,18 @@ export function SecondaryNav() {
         </Link>
 
         <div className="hidden items-center gap-6 text-xs font-semibold tracking-[0.2em] text-navy-900 sm:flex lg:gap-8">
-          {navItems.map((item) =>
-            item.to ? (
-              <NavLink
-                key={item.label}
-                to={item.to}
-                className={({ isActive }) =>
-                  `inline-flex items-center gap-2 transition hover:text-brand-500 ${isActive ? "text-brand-500" : ""}`
-                }
-              >
-                <span className="text-[#bf915c]">{item.icon}</span>
-                {item.label}
-              </NavLink>
-            ) : (
-              <a key={item.label} href={item.href} className="inline-flex items-center gap-2 transition hover:text-brand-500">
-                <span className="text-[#bf915c]">{item.icon}</span>
-                {item.label}
-              </a>
-            ),
-          )}
+          {navItems.map((item) => (
+            <NavLink
+              key={item.label}
+              to={item.to}
+              className={({ isActive }) =>
+                `inline-flex items-center gap-2 transition hover:text-brand-500 ${isActive ? "text-brand-500" : ""}`
+              }
+            >
+              <span className="text-[#bf915c]">{item.icon}</span>
+              {item.label}
+            </NavLink>
+          ))}
         </div>
       </div>
     </nav>
