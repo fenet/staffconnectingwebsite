@@ -63,8 +63,29 @@ function CompanyPage() {
         </div>
       </header>
 
-      <main className="mx-auto w-full max-w-6xl space-y-20 px-4 pb-24 sm:px-8 lg:px-10">
-        <section className="grid gap-8 rounded-[2.75rem] bg-white p-6 shadow-[0_35px_90px_-68px_rgba(15,23,42,0.45)] sm:p-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center lg:p-12">
+      <main className="mx-auto w-full max-w-6xl px-4 pb-24 sm:px-8 lg:px-10">
+        <div className="relative isolate overflow-hidden rounded-[3rem] border border-white/55 bg-white/20 p-4 shadow-[0_40px_110px_-70px_rgba(15,23,42,0.5)] backdrop-blur-xl sm:p-6 lg:p-8">
+          <div
+            className="pointer-events-none absolute inset-0 opacity-80"
+            aria-hidden
+            style={{
+              background:
+                "radial-gradient(circle at 100% 0%, rgba(15,26,45,0.34) 0%, rgba(15,26,45,0.18) 22%, rgba(15,26,45,0) 46%), radial-gradient(circle at 100% 100%, rgba(15,26,45,0.28) 0%, rgba(15,26,45,0.14) 20%, rgba(15,26,45,0) 44%), radial-gradient(circle at 95% 8%, rgba(191,145,92,0.20) 0%, rgba(191,145,92,0.08) 18%, rgba(191,145,92,0) 38%)",
+              animation: "pulse 10s ease-in-out infinite",
+            }}
+          />
+          <div
+            className="pointer-events-none absolute right-[-8%] top-[-10%] h-72 w-72 rounded-full bg-[#0f1a2d]/10 blur-3xl"
+            aria-hidden
+            style={{ animation: "pulse 14s ease-in-out infinite" }}
+          />
+          <div
+            className="pointer-events-none absolute right-[-6%] bottom-[-10%] h-80 w-80 rounded-full bg-[#0f1a2d]/12 blur-3xl"
+            aria-hidden
+            style={{ animation: "pulse 12s ease-in-out infinite" }}
+          />
+
+          <section className="relative grid gap-8 rounded-[2.75rem] bg-white/78 p-6 shadow-[0_35px_90px_-68px_rgba(15,23,42,0.45)] backdrop-blur-md sm:p-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center lg:p-12">
           <div className="space-y-5">
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-brand-400">Integrated Overview</p>
             <h2 className="text-3xl font-semibold text-navy-900 sm:text-4xl">Ein moderner Aufbau für Ihr Business in Österreich.</h2>
@@ -91,9 +112,9 @@ function CompanyPage() {
               <p className="text-sm font-semibold">Candidate and Company in one flow</p>
             </div>
           </div>
-        </section>
+          </section>
 
-        <section id="candidate-services" className="rounded-[2.75rem] bg-white p-8 shadow-[0_32px_85px_-62px_rgba(15,23,42,0.42)] sm:p-12">
+          <section id="candidate-services" className="rounded-[2.75rem] bg-white/78 p-8 shadow-[0_32px_85px_-62px_rgba(15,23,42,0.42)] backdrop-blur-md sm:p-12">
           <SectionHeading
             eyebrow="Candidate-Service in Company Area"
             title="Spezialisierte Services für Ihren laufenden Betrieb"
@@ -119,9 +140,9 @@ function CompanyPage() {
               </article>
             ))}
           </div>
-        </section>
+          </section>
 
-        <section className="rounded-[2.75rem] bg-white p-8 shadow-[0_30px_80px_-60px_rgba(15,23,42,0.35)] sm:p-12">
+          <section className="rounded-[2.75rem] bg-white/78 p-8 shadow-[0_30px_80px_-60px_rgba(15,23,42,0.35)] backdrop-blur-md sm:p-12">
           <SectionHeading
             eyebrow="Services"
             title="Full Package Service für Ihren Unternehmensstart"
@@ -142,9 +163,12 @@ function CompanyPage() {
               </article>
             ))}
           </div>
-        </section>
+          </section>
 
-        <InquiryFormSection />
+          <div className="rounded-[2.75rem] bg-white/78 p-1 shadow-[0_30px_80px_-60px_rgba(15,23,42,0.35)] backdrop-blur-md sm:p-2">
+            <InquiryFormSection />
+          </div>
+        </div>
       </main>
 
       <SiteFooter />

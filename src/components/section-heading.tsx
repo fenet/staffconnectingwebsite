@@ -11,7 +11,7 @@ export function SectionHeading({ eyebrow, title, description, align = "left" }: 
   return (
     <div className={`max-w-2xl ${alignment}`}>
       {eyebrow ? (
-        <p className={`inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.32em] text-brand-400 ${align === "center" ? "justify-center" : ""}`}>
+        <p className={`inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.28em] text-brand-400 ${align === "center" ? "justify-center" : ""}`}>
           <span className="h-px w-6 bg-brand-400/70" aria-hidden />
           {eyebrow}
         </p>

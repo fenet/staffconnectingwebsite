@@ -1,21 +1,42 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { ChatbotWidget } from "./components/chatbot-widget";
+import { trackPageView, trackViewContent } from "./lib/meta-pixel";
 import HomePage from "./pages/Home";
 import { AboutPage } from "./pages/About";
 import ContactPage from "./pages/Contact";
-import CompanyPage from "./pages/Company";
+import ImpressumPage from "./pages/Impressum";
+import JobboersePage from "./pages/Jobboerse";
+
+function MetaPixelRouteTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const routeLabel = location.pathname === "/" ? "Home" : location.pathname;
+
+    trackPageView();
+
+    trackViewContent({
+      content_name: routeLabel,
+      content_category: "page",
+      content_type: "website",
+    });
+  }, [location.pathname]);
+
+  return null;
+}
 
 function App() {
   return (
     <>
+      <MetaPixelRouteTracker />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/about-team" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/company-solutions" element={<CompanyPage />} />
-        <Route path="/candidate-services" element={<Navigate to="/company-solutions#candidate-services" replace />} />
-        <Route path="/jobboerse" element={<CompanyPage />} />
+        <Route path="/impressum" element={<ImpressumPage />} />
+        <Route path="/jobboerse" element={<JobboersePage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <ChatbotWidget />

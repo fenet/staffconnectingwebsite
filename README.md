@@ -28,3 +28,34 @@ export default {
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+## Meta Pixel + Conversions API
+
+This project now supports:
+
+- Browser-side Meta Pixel tracking
+- Server-side Meta Conversions API through the same app on production
+
+### Production setup
+
+1. Set frontend build env in [.env.production](.env.production):
+
+  - `VITE_ENABLE_META_CAPI=true`
+
+2. Set server runtime env on the VPS:
+
+  - `META_PIXEL_ID=1340019154853536`
+  - `META_CONVERSION_TOKEN=YOUR_META_CONVERSION_TOKEN`
+  - Optional: `META_TEST_EVENT_CODE=TEST12345`
+
+  You can place these in a root `.env` file on the VPS; `server.js` loads it at runtime.
+
+3. Build and start the app:
+
+  - `npm run build`
+  - `npm start`
+
+### Notes
+
+- The Meta token stays server-side in [server.js](server.js).
+- `/api/meta-conversions` is only used in production when `VITE_ENABLE_META_CAPI=true`.

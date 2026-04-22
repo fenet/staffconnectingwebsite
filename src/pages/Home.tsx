@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { InquiryFormSection } from "../components/inquiry-form-section";
 import { SectionHeading } from "../components/section-heading";
 import { SiteNav } from "../components/site-nav";
@@ -215,65 +216,27 @@ const IconAdvisory = () => (
   </svg>
 );
 
-const IconCheck = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="h-4 w-4"
-    aria-hidden
-  >
-    <path d="m5 12 4 4 10-10" />
-  </svg>
-);
-
 const PRACTICE_AREAS = [
   {
-    title: "Sie möchten Ihr eigenes Unternehmen gründen.",
+    title: "Wir unterstützen Interessenten umfassend bei der Gründung ihres Unternehmens.",
     description:
-      "Sie haben den Wunsch nach Selbstständigkeit.\nWir helfen Ihnen beim strukturierten Start.\nVon der Idee bis zur Umsetzung begleiten wir Sie.",
+      "Von der GISA-Anmeldung über den Firmenbucheintrag bis hin zur passenden Betriebshaftpflicht begleiten wir Sie strukturiert und zuverlässig durch alle notwendigen Schritte.\nSo schaffen wir gemeinsam die Grundlage für einen erfolgreichen Start in Ihre Selbstständigkeit.",
     href: "#inquiry",
     icon: <IconCompass />,
   },
   {
-    title: "Sie sind bereit, ins Handeln zu kommen.",
+    title: "Erfolgreichen Marktpositionierung.",
     description:
-      "Sie wollen nicht nur planen, sondern starten.\nWir geben Ihnen klare Schritte und Tempo.\nSo kommen Sie schneller in den aktiven Betrieb.",
+      "Die Entwicklung eines professionellen Logos und einer starken Markenidentität über den optimalen Google-Auftritt bis hin zur strategischen Präsenz in sozialen Netzwerken wird durch Staffconnecting professionell begleitet.\nDarüber hinaus planen und steuern wir zielgerichtete Werbekampagnen (Meta Ads, Google Ads) und entwickeln moderne, überzeugende Websites sowie ein konsistentes Corporate Design.\nAuch bei der Erstellung von Dienst- und Dienstleistungsverträgen sowie bei der Gewinnung qualifizierter Mitarbeiter stehen wir Ihnen kompetent zur Seite.\nGemeinsam schaffen wir die Basis für nachhaltiges Wachstum und einen starken Marktauftritt.",
     href: "#inquiry",
     icon: <IconHandshake />,
   },
   {
-    title: "Sie suchen langfristiges Einkommen, nicht schnelles Geld.",
+    title: "Wir begleiten Sie beim Aufbau eines starken Fundaments für Ihr Unternehmen.",
     description:
-      "Sie denken nachhaltig statt kurzfristig.\nWir bauen gemeinsam ein stabiles Fundament.\nFür planbares Wachstum über Jahre hinweg.",
+      "Dazu gehört die gezielte Auswahl und Vernetzung mit professionellen Partnern in den Bereichen Recht, Buchhaltung, Lohnverrechnung, Backoffice, Softwarelösungen zur Erleichterung des Arbeitsalltages, Unternehmensberatung, Versicherungen und Marketing.\nGleichzeitig unterstützen wir Sie bei der effektiven Kundengewinnung – mit klaren Strategien und praxisnaher Umsetzung, um Ihre Sichtbarkeit zu erhöhen und nachhaltig zu wachsen.\nSo schaffen Sie die besten Voraussetzungen für langfristigen unternehmerischen Erfolg.",
     href: "#inquiry",
     icon: <IconSignal />,
-  },
-];
-
-const VALUE_PILLARS = [
-  "Gewinnung Ihrer ersten zahlenden Kund:innen",
-  "Aufbau von Marketing und Social Media",
-  "Geschäftsstruktur und operatives Setup",
-  "Versicherung und grundlegende Buchhaltung",
-  "Bewährte Systeme, die in der Praxis funktionieren",
-];
-
-const APPROACH_STEPS = [
-  {
-    stage: "01",
-    title: "Senden Sie Ihre Bewerbung",
-  },
-  {
-    stage: "02",
-    title: "Wir prüfen Ihre Antworten",
-  },
-  {
-    stage: "03",
-    title: "Bei Auswahl → kontaktieren wir Sie für eine kostenlose Erstberatung",
   },
 ];
 
@@ -301,13 +264,89 @@ const IMPACT_METRICS = [
 ];
 
 const SOFTWARE_FEATURES = [
-  { label: "Rechnungsmanagement", icon: <IconInvoice /> },
-  { label: "Vertragsmanagement", icon: <IconDocument /> },
-  { label: "Mitarbeiter-Schichtplanung", icon: <IconTeamSchedule /> },
-  { label: "Crawler zur Neukundenfindung online", icon: <IconSearchTarget /> },
+  { label: "Fakturierung Management", icon: <IconInvoice />, href: "https://marketing.putzelf.com" },
+  { label: "Dienstplan- und Zeiterfassungsmanagement", icon: <IconTeamSchedule />, href: "https://marketing.putzelf.com" },
+  { label: "Mitarbeiterverwaltungsmanagement", icon: <IconDocument />, href: "https://marketing.putzelf.com" },
+  { label: "Kundenverwaltungsmanagement", icon: <IconSearchTarget />, href: "https://marketing.putzelf.com" },
+];
+
+const FLOW_STEPS = [
+  {
+    title: "Anfrage / Bewerbung",
+    description: "Sie senden uns Ihre Anfrage mit ersten Informationen zu Ihrer Person und Ihrer Geschäftsidee.",
+  },
+  {
+    title: "Erste Prüfung",
+    description: "Wir prüfen Ihre Angaben auf Zielsetzung, Motivation und grundlegende Eignung.",
+  },
+  {
+    title: "Persönliches Erstgespräch",
+    description: "In einem unverbindlichen Gespräch lernen wir uns kennen und besprechen Ihre Ziele sowie unsere Zusammenarbeit.",
+  },
+  {
+    title: "Potenzialanalyse",
+    description: "Wir analysieren Ihre Ausgangssituation und bewerten gemeinsam das unternehmerische Potenzial.",
+  },
+  {
+    title: "Auswahlverfahren",
+    description: "Da die Plätze begrenzt sind, nehmen wir nur ausgewählte Teilnehmer in unser Programm auf.",
+  },
+  {
+    title: "Aufnahme and Start",
+    description: "Nach erfolgreicher Auswahl beginnt die strukturierte Zusammenarbeit mit einem klaren Fahrplan.",
+  },
+  {
+    title: "Umsetzung and Wachstum",
+    description: "Wir begleiten Sie aktiv beim Aufbau Ihres Unternehmens – von der Struktur bis zur Kundengewinnung.",
+  },
 ];
 
 export function HomePage() {
+  const [activeStep, setActiveStep] = useState<number>(-1);
+  const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const visibilityRatiosRef = useRef<Record<number, number>>({});
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const stepIndex = Number(entry.target.getAttribute("data-step-index"));
+          if (Number.isNaN(stepIndex)) {
+            return;
+          }
+
+          visibilityRatiosRef.current[stepIndex] = entry.isIntersecting ? entry.intersectionRatio : 0;
+        });
+
+        let bestIndex = -1;
+        let bestRatio = 0;
+
+        Object.entries(visibilityRatiosRef.current).forEach(([key, value]) => {
+          if (value > bestRatio) {
+            bestRatio = value;
+            bestIndex = Number(key);
+          }
+        });
+
+        setActiveStep(bestRatio > 0.16 ? bestIndex : -1);
+      },
+      {
+        threshold: [0, 0.1, 0.25, 0.45, 0.6, 0.8, 1],
+        rootMargin: "-20% 0px -20% 0px",
+      },
+    );
+
+    stepRefs.current.forEach((element) => {
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div id="top" className="overflow-x-hidden font-sans text-navy-900">
       <section className="relative left-1/2 flex h-screen w-screen -translate-x-1/2 items-center overflow-hidden py-28 text-white">
@@ -318,7 +357,8 @@ export function HomePage() {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
+          poster="/homeimg.jpg"
           aria-label="Staffconnecting Team"
         >
           <source src="/homevid.mp4" type="video/mp4" />
@@ -341,7 +381,7 @@ export function HomePage() {
             <div className="mt-8 flex justify-end">
               <a
                 href="#inquiry"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#2b4e85] to-[#0e1a2d] px-10 py-4 text-lg font-semibold text-white shadow-[0_22px_48px_-32px_rgba(15,23,42,0.85)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-navy-900 px-10 py-4 text-lg font-semibold text-white shadow-[0_22px_48px_-32px_rgba(15,23,42,0.85)] transition-colors hover:bg-navy-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-700"
               >
                 <IconAdvisory />
                 Erstgespräch
@@ -353,23 +393,29 @@ export function HomePage() {
 
       <main className="relative mx-auto w-full max-w-6xl px-4 pb-20 pt-20 sm:px-8 lg:px-10">
         <div className="space-y-12 pb-16 sm:space-y-14 lg:space-y-16">
-          <section className="relative overflow-hidden rounded-[2.75rem] bg-white px-8 py-14 shadow-[0_30px_80px_-60px_rgba(15,23,42,0.35)] sm:px-12 sm:py-16">
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(14,26,45,0.04),rgba(191,145,92,0.12))]" aria-hidden />
+          <section className="relative isolate overflow-hidden rounded-[2.75rem] px-8 py-14 shadow-[0_30px_80px_-60px_rgba(15,23,42,0.35)] sm:px-12 sm:py-16">
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                backgroundImage: "url('/team2.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                filter: "grayscale(100%) opacity(0.35)",
+              }}
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#0f1a2d]/20 to-[#0f1a2d]/30" />
             <div className="relative mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-400">Begrenzte Plätze</p>
-              <h2 className="text-3xl font-semibold leading-tight text-navy-900 sm:text-4xl">
-                Starten Sie Ihr eigenes Reinigungsunternehmen – begrenzte Plätze verfügbar
-              </h2>
-              <p className="max-w-3xl text-sm leading-relaxed text-sand-700 sm:text-base">
+              <p className="text-2xl font-extrabold uppercase tracking-[0.2em] text-[#0e1a2d] sm:text-3xl">Begrenzte Plätze</p>
+              <p className="max-w-3xl text-base leading-relaxed text-white sm:text-lg">
                 Wir wählen eine kleine Anzahl motivierter Personen aus und helfen Ihnen, ein erfolgreiches
                 Reinigungsunternehmen von Grund auf aufzubauen – auch ohne Vorerfahrung.
               </p>
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-brand-500">
+              <p className="text-xl font-extrabold uppercase tracking-[0.18em] text-[#0e1a2d] sm:text-2xl">
                 Nur wenige Plätze in diesem Monat verfügbar.
               </p>
               <a
                 href="#inquiry"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-400 via-[#0f1a2d] to-navy-900 px-7 py-3 text-sm font-semibold text-white shadow-[0_22px_48px_-32px_rgba(15,23,42,0.85)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-navy-900 px-7 py-3 text-sm font-semibold text-white shadow-[0_22px_48px_-32px_rgba(15,23,42,0.85)] transition-colors hover:bg-navy-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-700"
               >
                 Jetzt bewerben
                 <span aria-hidden>→</span>
@@ -377,85 +423,65 @@ export function HomePage() {
             </div>
           </section>
 
-          <div className="flex justify-center">
-            <p className="inline-flex items-center rounded-full border border-brand-300/60 bg-white px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-brand-500 shadow-[0_14px_30px_-22px_rgba(15,23,42,0.5)]">
-              Begrenzte Plätze verfügbar
-            </p>
+          <div className="mx-auto max-w-3xl border-l-4 border-brand-400 bg-white/80 px-5 py-3 text-center shadow-[0_16px_36px_-28px_rgba(15,23,42,0.55)]">
+            <p className="text-base font-medium text-sand-700">Begrenzte Plätze verfügbar</p>
           </div>
 
           <section className="space-y-10 rounded-[2.75rem] bg-white/90 p-8 shadow-[0_30px_80px_-60px_rgba(15,23,42,0.35)] backdrop-blur-sm sm:p-12">
             <SectionHeading
               eyebrow="Leistungen"
               title="Das ist nicht für jede:n"
-              description="Wir arbeiten nicht mit allen zusammen. Wir suchen ernsthafte Menschen, die bereit sind, langfristig etwas aufzubauen."
+              description="Wir suchen engagierte und zielorientierte Persönlichkeiten, die bereit sind, langfristig etwas Eigenes aufzubauen."
               align="center"
             />
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {PRACTICE_AREAS.map((item) => (
-                <article
-                  key={item.title}
-                  className="group relative flex h-full flex-col rounded-2xl bg-white px-8 py-7 text-center shadow-[0_20px_55px_-40px_rgba(15,23,42,0.5)] transition hover:-translate-y-1 hover:shadow-[0_26px_70px_-40px_rgba(15,23,42,0.6)]"
-                >
-                  <div className="mb-6 flex justify-center" aria-hidden>
-                    <div className="relative inline-flex h-20 w-20 items-center justify-center">
-                      <span className="absolute inset-0 rounded-[1.75rem] bg-gradient-to-br from-navy-900 via-navy-800 to-brand-400 opacity-70 blur-sm" />
-                      <span className="absolute inset-0 rotate-6 rounded-[1.9rem] bg-gradient-to-br from-brand-500/70 via-navy-700/60 to-brand-300/50" />
-                      <span className="relative flex h-full w-full items-center justify-center rounded-[1.5rem] bg-gradient-to-br from-navy-900 via-navy-800 to-brand-400 shadow-[0_20px_45px_-30px_rgba(15,23,42,0.8)]">
+            <p className="mx-auto max-w-4xl whitespace-pre-line text-center text-sm leading-relaxed text-sand-700 sm:text-base">
+              {`Sie möchten ein eigenes Unternehmen gründen und streben nach unternehmerischer Freiheit?
+Sie haben den Wunsch, selbstständig zu arbeiten und Ihre Ideen erfolgreich umzusetzen?
+
+Wir unterstützen Sie dabei – strukturiert, praxisnah und individuell.
+Von der ersten Idee bis zur erfolgreichen Umsetzung begleiten wir Sie Schritt für Schritt.`}
+            </p>
+            <div className="grid gap-7 lg:grid-cols-[0.95fr_1.05fr]">
+              <article className="relative overflow-hidden rounded-[2rem] bg-navy-900 text-white shadow-[0_25px_70px_-42px_rgba(15,23,42,0.65)]">
+                <img
+                  src="/homeimg.jpg"
+                  alt="Team bei der Planung einer Unternehmensgründung"
+                  className="h-full min-h-[22rem] w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 bg-navy-900/45" aria-hidden />
+                <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/20 bg-navy-900/70 p-5 backdrop-blur-sm">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sand-200">Business Setup</p>
+                  <p className="mt-2 text-sm leading-relaxed text-sand-100">
+                    Wir kombinieren Gründungsbegleitung, Marktpositionierung und operative Strukturen in einem klaren Umsetzungsplan.
+                  </p>
+                </div>
+              </article>
+
+              <div className="space-y-4">
+                {PRACTICE_AREAS.map((item) => (
+                  <article
+                    key={item.title}
+                    className="rounded-2xl border border-sand-200 bg-sand-50/80 px-6 py-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.45)]"
+                  >
+                    <div className="flex items-start gap-4">
+                      <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-navy-900 text-white shadow-[0_18px_38px_-24px_rgba(15,23,42,0.75)]">
                         {item.icon}
                       </span>
+                      <div className="space-y-2">
+                        <h3 className="text-xl font-semibold leading-snug text-navy-900">{item.title}</h3>
+                        <p className="whitespace-pre-line text-sm leading-relaxed text-sand-700">{item.description}</p>
+                      </div>
                     </div>
-                  </div>
-                  <h3 className="text-[1.35rem] font-semibold text-navy-900">{item.title}</h3>
-                  <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-sand-700">{item.description}</p>
-                  <a
-                    href={item.href ?? "#inquiry"}
-                    className="mt-6 inline-flex items-center justify-center gap-2 self-center rounded-full bg-gradient-to-r from-brand-400 via-[#0f1a2d] to-navy-900 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_20px_44px_-30px_rgba(15,23,42,0.8)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
-                  >
-                    Prüfen, ob Sie geeignet sind
-                    <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                  </a>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section className="rounded-[2.3rem] bg-white p-10 shadow-[0_25px_70px_-50px_rgba(15,23,42,0.45)] lg:p-16">
-            <div className="mx-auto max-w-4xl space-y-8">
-              <SectionHeading
-                eyebrow="Unterstützung"
-                title="Wobei wir Sie unterstützen"
-                description="Wir begleiten Sie Schritt für Schritt beim Aufbau Ihres eigenen Reinigungsunternehmens."
-                align="center"
-              />
-              <div className="grid gap-3 sm:grid-cols-2">
-                {VALUE_PILLARS.map((point) => (
-                  <div
-                    key={point}
-                    className="flex items-start gap-3 rounded-2xl bg-sand-50 px-5 py-4 shadow-[0_18px_50px_-38px_rgba(15,23,42,0.45)]"
-                  >
-                    <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-400 via-[#0f1a2d] to-navy-900 text-white shadow-[0_14px_30px_-18px_rgba(15,23,42,0.75)]">
-                      <IconCheck />
-                    </span>
-                    <p className="text-sm font-medium leading-relaxed text-sand-700">{point}</p>
-                  </div>
+                  </article>
                 ))}
               </div>
-              <div className="flex justify-center">
-                <a
-                  href="#inquiry"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-400 via-[#0f1a2d] to-navy-900 px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_44px_-30px_rgba(15,23,42,0.8)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
-                >
-                  Kostenlose Erstberatung anfragen
-                  <span aria-hidden>→</span>
-                </a>
-              </div>
             </div>
           </section>
 
-          <div className="rounded-2xl bg-[linear-gradient(90deg,rgba(14,26,45,0.05),rgba(191,145,92,0.16),rgba(14,26,45,0.05))] px-5 py-3 text-center">
-            <p className="text-xs font-semibold tracking-[0.22em] text-navy-900">
-              Wir wählen Bewerber:innen sorgfältig aus
-            </p>
+          <div className="mx-auto max-w-3xl border-l-4 border-brand-400 bg-white/80 px-5 py-3 text-center shadow-[0_16px_36px_-28px_rgba(15,23,42,0.55)]">
+            <p className="text-base font-medium text-sand-700">Wir wählen Bewerber:innen sorgfältig aus</p>
           </div>
 
           <section className="space-y-8 rounded-[2.75rem] bg-white px-8 py-12 shadow-[0_30px_80px_-70px_rgba(15,23,42,0.4)] sm:px-12 lg:px-16">
@@ -469,7 +495,7 @@ export function HomePage() {
             {IMPACT_METRICS.map((metric) => (
               <article key={metric.label} className="flex flex-col items-center justify-between rounded-2xl bg-sand-50 px-8 py-10 text-center shadow-[0_22px_60px_-40px_rgba(15,23,42,0.45)]">
                 <div className="flex w-full flex-col items-center gap-5">
-                  <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-navy-900 via-navy-800 to-brand-400 shadow-[0_20px_50px_-28px_rgba(15,23,42,0.75)]">
+                  <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-navy-900 shadow-[0_20px_50px_-28px_rgba(15,23,42,0.75)]">
                     {metric.icon}
                   </span>
                   <div>
@@ -482,31 +508,94 @@ export function HomePage() {
             </div>
           </section>
 
-          <section className="rounded-[2.3rem] bg-white px-8 py-12 shadow-[0_25px_70px_-50px_rgba(15,23,42,0.45)] sm:px-12 lg:px-16">
-            <div className="mx-auto max-w-4xl space-y-8">
-              <SectionHeading
-                eyebrow="Ablauf"
-                title="So funktioniert es"
-                align="center"
-              />
-              <div className="space-y-6">
-                {APPROACH_STEPS.map((step) => (
-                  <div key={`second-${step.stage}`} className="flex items-center gap-5 border-b border-sand-200/60 pb-6 last:border-none last:pb-0">
-                    <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-navy-900 via-navy-800 to-black text-sm font-semibold text-white shadow-[0_12px_30px_-20px_rgba(15,23,42,0.6)]">
-                      {step.stage}
-                    </div>
-                    <h3 className="text-base font-semibold text-navy-900 sm:text-lg">{step.title}</h3>
-                  </div>
-                ))}
+          <section className="relative isolate overflow-hidden rounded-[2.75rem] px-2 py-6 shadow-[0_30px_80px_-60px_rgba(15,23,42,0.35)] sm:px-4 lg:px-6">
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                backgroundImage: "url('/teamm.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                filter: "grayscale(100%) opacity(0.35)",
+              }}
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#0f1a2d]/20 to-[#0f1a2d]/30" />
+            <div className="relative mx-auto max-w-6xl">
+              <div className="mx-auto max-w-2xl text-center">
+                <p className="inline-flex items-center justify-center gap-3 text-sm font-extrabold uppercase tracking-[0.28em] text-[#0e1a2d]">
+                  <span className="h-px w-6 bg-[#0e1a2d]/70" aria-hidden />
+                  Ablauf
+                </p>
+                <h2 className="mt-4 text-[2.1rem] font-semibold text-navy-900 sm:text-[2.5rem] md:text-[3rem] md:leading-tight">
+                  So funktioniert es
+                </h2>
               </div>
-              <div className="flex justify-center">
-                <a
-                  href="#inquiry"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-400 via-[#0f1a2d] to-navy-900 px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_44px_-30px_rgba(15,23,42,0.8)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
-                >
-                  Jetzt bewerben – begrenzte Plätze
-                  <span aria-hidden>→</span>
-                </a>
+
+              <div className="relative mx-auto mt-8 max-w-5xl">
+
+                <div className="space-y-6">
+                  {FLOW_STEPS.map((step, index) => {
+                    const isActive = index === activeStep;
+
+                    return (
+                      <div
+                        key={step.title}
+                        ref={(element) => {
+                          stepRefs.current[index] = element;
+                        }}
+                        data-step-index={index}
+                        className="relative grid md:grid-cols-2 md:items-center"
+                      >
+                        <div
+                          className={`relative z-10 overflow-hidden rounded-[1.65rem] border-2 px-5 py-5 shadow-[0_24px_58px_-48px_rgba(15,23,42,0.35)] transition-all duration-700 md:max-w-[92%] ${
+                            index % 2 === 0 ? "md:col-start-1 md:mr-16 lg:mr-20" : "md:col-start-2 md:ml-16 lg:ml-20"
+                          } ${
+                            isActive
+                              ? "border-[#0e1a2d] bg-[#0e1a2d]/95 text-white ring-2 ring-[#0e1a2d]/25 -translate-y-2 shadow-[0_32px_70px_-28px_rgba(14,26,45,0.45)] backdrop-blur-sm"
+                              : "border-[#d6e0ea] bg-white/95 text-[#0e1a2d]"
+                          }`}
+                        >
+                          <span
+                            className={`pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full ${isActive ? "bg-white/12 blur-2xl" : "bg-[#0e1a2d]/6"}`}
+                            aria-hidden
+                          />
+                          <span
+                            className={`pointer-events-none absolute -left-12 -bottom-12 h-32 w-32 rounded-full ${isActive ? "bg-white/10 blur-3xl" : "hidden"}`}
+                            aria-hidden
+                          />
+
+                          <h3 className={`relative mt-2 text-xl font-semibold ${isActive ? "text-white" : "text-[#0e1a2d]"}`}>
+                            {step.title}
+                          </h3>
+                          <p className={`relative mt-3 text-sm leading-relaxed ${isActive ? "text-white/95" : "text-sand-700"}`}>
+                            {step.description}
+                          </p>
+                        </div>
+
+                        <span
+                          className={`pointer-events-none absolute top-1/2 z-0 hidden h-[3px] -translate-y-1/2 transition-all duration-700 md:block ${
+                            index % 2 === 0
+                              ? "right-[calc(50%-1.5rem)] w-52 lg:w-72"
+                              : "left-[calc(50%-1.5rem)] w-52 lg:w-72"
+                          } ${isActive ? "bg-[#0f1a2d]/55" : "bg-[#0f1a2d]/25"}`}
+                          aria-hidden
+                        />
+
+                        <span
+                          className={`pointer-events-none absolute top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full text-sm font-bold tracking-[0.08em] transition-all duration-700 md:flex ${
+                            index % 2 === 0 ? "right-[calc(50%-1.5rem)] translate-x-1/2" : "left-[calc(50%-1.5rem)] -translate-x-1/2"
+                          } ${
+                            isActive
+                              ? "bg-gradient-to-br from-brand-300 to-brand-500 text-white shadow-[0_0_0_10px_rgba(191,145,92,0.2),0_18px_44px_-20px_rgba(191,145,92,0.55)] scale-110"
+                              : "bg-[#0f1a2d] text-white shadow-[0_12px_26px_-16px_rgba(15,23,42,0.45)]"
+                          }`}
+                          aria-hidden
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </section>
@@ -514,28 +603,34 @@ export function HomePage() {
           <section className="px-8 py-8 sm:px-10 lg:px-12 xl:px-16">
             <div className="mx-auto max-w-4xl space-y-8">
               <SectionHeading
-                eyebrow="Software & Prozesse"
-                title="Digitale Werkzeuge für Reinigungsunternehmen im laufenden Betrieb"
-                description="Neben dem Setup liefern wir Software-Funktionen, die den Alltag von Reinigungsunternehmen effizient steuern."
+                eyebrow="Software and Prozesse"
+                title="Digitale Softwarelösungen für den Arbeitsalltag"
                 align="center"
               />
               <ul className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
                 {SOFTWARE_FEATURES.map((feature) => (
                   <li
                     key={feature.label}
-                    className="flex min-h-[8.5rem] flex-col items-center justify-center gap-3 rounded-2xl bg-sand-50 px-5 py-5 text-center text-sm font-medium text-sand-700 shadow-[0_20px_60px_-42px_rgba(15,23,42,0.45)]"
+                    className="rounded-2xl bg-sand-50 shadow-[0_20px_60px_-42px_rgba(15,23,42,0.45)]"
                   >
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-brand-400 via-[#0f1a2d] to-navy-900 text-white shadow-[0_14px_30px_-18px_rgba(15,23,42,0.75)]">
-                      {feature.icon}
-                    </span>
-                    <span>{feature.label}</span>
+                    <a
+                      href={feature.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex min-h-[8.5rem] flex-col items-center justify-center gap-3 rounded-2xl px-5 py-5 text-center text-sm font-medium text-sand-700 transition-colors hover:bg-sand-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-700"
+                    >
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-navy-900 text-white shadow-[0_14px_30px_-18px_rgba(15,23,42,0.75)]">
+                        {feature.icon}
+                      </span>
+                      <span>{feature.label}</span>
+                    </a>
                   </li>
                 ))}
               </ul>
               <div className="flex justify-center">
                 <a
                   href="#inquiry"
-                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-brand-400 via-[#0f1a2d] to-navy-900 px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_44px_-30px_rgba(15,23,42,0.8)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
+                  className="inline-flex items-center justify-center rounded-full bg-navy-900 px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_44px_-30px_rgba(15,23,42,0.8)] transition-colors hover:bg-navy-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-700"
                 >
                   Beratung anfragen
                   <span aria-hidden>→</span>
@@ -548,7 +643,7 @@ export function HomePage() {
             <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(14,26,45,0.04),rgba(191,145,92,0.08))]" aria-hidden />
             <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-sand-200 to-transparent" aria-hidden />
             <div className="relative flex flex-col items-center gap-6 text-center sm:gap-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-brand-400">Nächster Schritt</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-brand-400">Nächster Schritt</p>
               <h2 className="max-w-3xl text-3xl font-semibold text-navy-900 sm:text-4xl">
                 Lassen Sie uns Ihr Unternehmen in Österreich gemeinsam aufbauen.
               </h2>
@@ -558,14 +653,14 @@ export function HomePage() {
               <div className="flex flex-col gap-3 sm:flex-row">
                 <a
                   href="#inquiry"
-                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-brand-400 via-[#0f1a2d] to-navy-900 px-6 py-3 text-sm font-semibold text-white shadow-[0_22px_48px_-32px_rgba(15,23,42,0.85)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
+                  className="inline-flex items-center justify-center rounded-full bg-navy-900 px-6 py-3 text-sm font-semibold text-white shadow-[0_22px_48px_-32px_rgba(15,23,42,0.85)] transition-colors hover:bg-navy-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-700"
                 >
                   Erstgespräch buchen
                   <span aria-hidden>→</span>
                 </a>
                 <a
                   href="#inquiry"
-                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-brand-400 via-[#0f1a2d] to-navy-900 px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_46px_-28px_rgba(15,23,42,0.75)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
+                  className="inline-flex items-center justify-center rounded-full bg-navy-900 px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_46px_-28px_rgba(15,23,42,0.75)] transition-colors hover:bg-navy-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-700"
                 >
                   Gründungsanfrage senden
                   <span aria-hidden>→</span>
@@ -575,7 +670,7 @@ export function HomePage() {
           </section>
 
           <div className="mx-auto max-w-3xl border-l-4 border-brand-400 bg-white/80 px-5 py-3 text-center shadow-[0_16px_36px_-28px_rgba(15,23,42,0.55)]">
-            <p className="text-sm font-medium text-sand-700">Nicht alle Bewerbungen werden angenommen.</p>
+            <p className="text-base font-medium text-sand-700">Nicht alle Bewerbungen werden angenommen.</p>
           </div>
 
           <div id="inquiry">

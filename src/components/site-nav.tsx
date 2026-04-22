@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 type SiteNavProps = {
@@ -17,11 +18,19 @@ const IconMail = () => (
   </svg>
 );
 
+const IconBriefcase = () => (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" aria-hidden>
+    <path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h13A1.5 1.5 0 0 1 20 8.5v8A1.5 1.5 0 0 1 18.5 18h-13A1.5 1.5 0 0 1 4 16.5v-8Z" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M9 7V6a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 6v1" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M4 11h16" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 const navItems = [
   {
-    label: "Unternehmen",
-    to: "/company-solutions",
-    icon: <IconBuilding />,
+    label: "Jobbörse",
+    to: "/jobboerse",
+    icon: <IconBriefcase />,
   },
   {
     label: "Über uns",
@@ -36,6 +45,7 @@ const navItems = [
 ];
 
 export function SiteNav({ mode = "solid", palette }: SiteNavProps) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const baseClasses = "z-30 flex items-center px-6 py-5 sm:px-12 lg:px-24";
   const resolvedPalette = palette ?? (mode === "overlay" ? "light" : "dark");
   const variantClasses =
@@ -78,6 +88,42 @@ export function SiteNav({ mode = "solid", palette }: SiteNavProps) {
           </NavLink>
         ))}
       </div>
+
+      <button
+        type="button"
+        onClick={() => setMobileMenuOpen((prev) => !prev)}
+        className="relative z-30 ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-white/85 text-navy-900 shadow-[0_12px_30px_-20px_rgba(15,23,42,0.45)] backdrop-blur transition hover:bg-white sm:hidden"
+        aria-label={mobileMenuOpen ? "Menü schließen" : "Menü öffnen"}
+        aria-expanded={mobileMenuOpen}
+      >
+        <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden>
+          {mobileMenuOpen ? (
+            <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          ) : (
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          )}
+        </svg>
+      </button>
+
+      {mobileMenuOpen ? (
+        <div className="absolute inset-x-4 top-full z-40 mt-3 rounded-2xl border border-white/40 bg-white/95 p-3 shadow-[0_20px_60px_-36px_rgba(15,23,42,0.55)] backdrop-blur sm:hidden">
+          <div className="flex flex-col gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-navy-900">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.label}
+                to={item.to}
+                onClick={() => setMobileMenuOpen(false)}
+                className={({ isActive }) =>
+                  `inline-flex items-center gap-2 rounded-xl px-3 py-2 transition ${isActive ? "bg-navy-900 text-white" : "hover:bg-sand-50"}`
+                }
+              >
+                <span className={`${mobileMenuOpen ? "text-[#bf915c]" : ""}`}>{item.icon}</span>
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </nav>
   );
 }
