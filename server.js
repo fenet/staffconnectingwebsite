@@ -7,6 +7,7 @@ import express from "express";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const distDir = path.join(__dirname, "dist");
+const publicDir = path.join(__dirname, "public");
 
 const app = express();
 app.set("trust proxy", true);
@@ -85,6 +86,7 @@ app.post("/api/meta-conversions", async (req, res) => {
   return res.status(200).json({ ok: true, meta: data });
 });
 
+app.use("/public", express.static(publicDir));
 app.use(express.static(distDir));
 
 app.get(/^\/(?!api\/).*/, (_req, res) => {
