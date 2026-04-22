@@ -202,7 +202,7 @@ export function AboutPage() {
           <div className="flex flex-col gap-6 pt-4 sm:pt-8 lg:pt-10">
             <span className="text-xs font-semibold uppercase tracking-[0.32em] text-brand-400">Unser Versprechen</span>
             <h2 className="text-3xl font-semibold leading-tight text-navy-900 sm:text-4xl">
-              Wir bauen Unternehmen in Österreich auf – strukturiert, rechtssicher und digital.
+              Unternehmen in Österreich aufbauen – strukturiert, rechtssicher und digital.
             </h2>
             <div className="max-w-2xl space-y-4 text-sm leading-relaxed text-sand-700 sm:text-base">
               <p>Unsere Marke richtet sich an Menschen, die in Österreich ein neues Unternehmen starten möchten – in verschiedenen Branchen, aktuell mit Schwerpunkt auf Cleaning Business und Moving Companies.</p>

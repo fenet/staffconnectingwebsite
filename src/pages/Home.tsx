@@ -673,7 +673,7 @@ Von der ersten Idee bis zur erfolgreichen Umsetzung begleiten wir Sie Schritt f√
             <p className="text-base font-medium text-sand-700">Nicht alle Bewerbungen werden angenommen.</p>
           </div>
 
-          <div id="inquiry">
+          <div id="inquiry" className="scroll-mt-24">
             <InquiryFormSection />
           </div>
         </div>

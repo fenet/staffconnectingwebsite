@@ -26,10 +26,31 @@ function MetaPixelRouteTracker() {
   return null;
 }
 
+function RouteScrollManager() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const targetId = location.hash.slice(1);
+      const target = document.getElementById(targetId);
+
+      if (target) {
+        target.scrollIntoView({ block: "start" });
+        return;
+      }
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [location.pathname, location.hash]);
+
+  return null;
+}
+
 function App() {
   return (
     <>
       <MetaPixelRouteTracker />
+      <RouteScrollManager />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />

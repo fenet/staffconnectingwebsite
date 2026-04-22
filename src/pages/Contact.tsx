@@ -227,7 +227,7 @@ function ContactPage() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden rounded-[2.75rem] bg-white px-10 py-16 shadow-[0_25px_70px_-50px_rgba(15,23,42,0.45)] sm:px-14">
+        <section id="consult" className="relative scroll-mt-24 overflow-hidden rounded-[2.75rem] bg-white px-10 py-16 shadow-[0_25px_70px_-50px_rgba(15,23,42,0.45)] sm:px-14">
           <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(14,26,45,0.05),rgba(191,145,92,0.1))]" aria-hidden />
           <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-sand-200 to-transparent" aria-hidden />
           <div className="relative flex flex-col items-center gap-6 text-center sm:gap-8">
@@ -310,7 +310,9 @@ function ContactPage() {
           </section>
         </section>
 
-        <InquiryFormSection />
+        <div id="inquiry" className="scroll-mt-24">
+          <InquiryFormSection />
+        </div>
       </main>
 
       <SiteFooter />
