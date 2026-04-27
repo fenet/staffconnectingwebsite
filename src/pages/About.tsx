@@ -380,18 +380,24 @@ export function AboutPage() {
               {leftServicePillars.map((service, index) => (
                 <article
                   key={service.title}
-                  className="group flex gap-5 p-2"
+                  className="group flex flex-col gap-4 p-2 sm:flex-row sm:gap-5"
                 >
-                  <div className="relative flex w-20 flex-col items-center">
+                  <div className="relative flex w-full justify-start sm:w-20 sm:flex-col sm:items-center">
                     <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-navy-900 text-base font-semibold uppercase tracking-[0.32em] text-white">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <span className="mt-2 h-full w-px bg-gradient-to-b from-brand-300 via-[#0f1a2d]/60 to-transparent" aria-hidden />
+                    <span
+                      className="mt-2 hidden h-full w-px bg-gradient-to-b from-brand-300 via-[#0f1a2d]/60 to-transparent sm:block"
+                      aria-hidden
+                    />
                   </div>
                   <div className="min-w-0 flex-1 space-y-3">
-                    <div className="flex items-center gap-2">
-                      <span className="h-0.5 w-12 bg-gradient-to-r from-brand-300 via-[#0f1a2d] to-transparent" aria-hidden />
-                      <h3 className="break-words text-lg font-semibold text-navy-900">{service.title}</h3>
+                    <div className="flex items-start gap-2 sm:items-center">
+                      <span
+                        className="hidden h-0.5 w-12 bg-gradient-to-r from-brand-300 via-[#0f1a2d] to-transparent sm:block"
+                        aria-hidden
+                      />
+                      <h3 className="min-w-0 break-words text-lg font-semibold text-navy-900">{service.title}</h3>
                     </div>
                     <p className="break-words text-sm leading-relaxed text-sand-700 sm:text-base">{service.description}</p>
                   </div>
@@ -403,18 +409,24 @@ export function AboutPage() {
               {rightServicePillars.map((service, index) => (
                 <article
                   key={service.title}
-                  className="group flex gap-5 p-2"
+                  className="group flex flex-col gap-4 p-2 sm:flex-row sm:gap-5"
                 >
-                  <div className="relative flex w-20 flex-col items-center">
+                  <div className="relative flex w-full justify-start sm:w-20 sm:flex-col sm:items-center">
                     <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-navy-900 text-base font-semibold uppercase tracking-[0.32em] text-white">
                       {String(index + 5).padStart(2, "0")}
                     </span>
-                    <span className="mt-2 h-full w-px bg-gradient-to-b from-brand-300 via-[#0f1a2d]/60 to-transparent" aria-hidden />
+                    <span
+                      className="mt-2 hidden h-full w-px bg-gradient-to-b from-brand-300 via-[#0f1a2d]/60 to-transparent sm:block"
+                      aria-hidden
+                    />
                   </div>
                   <div className="min-w-0 flex-1 space-y-3">
-                    <div className="flex items-center gap-2">
-                      <span className="h-0.5 w-12 bg-gradient-to-r from-brand-300 via-[#0f1a2d] to-transparent" aria-hidden />
-                      <h3 className="break-words text-lg font-semibold text-navy-900">{service.title}</h3>
+                    <div className="flex items-start gap-2 sm:items-center">
+                      <span
+                        className="hidden h-0.5 w-12 bg-gradient-to-r from-brand-300 via-[#0f1a2d] to-transparent sm:block"
+                        aria-hidden
+                      />
+                      <h3 className="min-w-0 break-words text-lg font-semibold text-navy-900">{service.title}</h3>
                     </div>
                     <p className="break-words text-sm leading-relaxed text-sand-700 sm:text-base">{service.description}</p>
                   </div>

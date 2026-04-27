@@ -56,8 +56,8 @@ export function InquiryFormSection() {
       <div className="mx-auto grid w-full gap-6 lg:grid-cols-[60%_40%] lg:items-start">
         <div className="p-0">
           <div className="text-left">
-            <h2 className="text-3xl font-semibold text-navy-900 sm:text-4xl">Anfrage absenden</h2>
-            <p className="mt-2 text-base text-sand-700 sm:text-lg">Wir freuen uns auf Ihre Anfrage</p>
+            <h2 className="text-3xl font-bold text-navy-900 sm:text-4xl sm:font-semibold">Anfrage absenden</h2>
+            <p className="mt-2 text-base font-semibold text-sand-700 sm:text-lg sm:font-normal">Wir freuen uns auf Ihre Anfrage</p>
           </div>
 
           <form
@@ -198,7 +198,7 @@ export function InquiryFormSection() {
             </button>
 
             {showThankYou ? (
-              <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800 md:col-span-2 lg:col-span-3" role="status" aria-live="polite">
+              <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800 sm:font-medium md:col-span-2 lg:col-span-3" role="status" aria-live="polite">
                 Vielen Dank für Ihre Anfrage! Wir melden uns so schnell wie möglich bei Ihnen.
               </p>
             ) : null}
