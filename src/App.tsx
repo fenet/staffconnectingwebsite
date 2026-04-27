@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { ChatbotWidget } from "./components/chatbot-widget";
 import { trackPageView, trackViewContent } from "./lib/meta-pixel";
 import HomePage from "./pages/Home";
 import { AboutPage } from "./pages/About";
@@ -60,7 +59,6 @@ function App() {
         <Route path="/jobboerse" element={<JobboersePage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <ChatbotWidget />
     </>
   );
 }

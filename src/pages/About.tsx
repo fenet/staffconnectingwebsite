@@ -94,7 +94,7 @@ const LEADERSHIP = [
     imageAlt: "Portrait von Xiang",
   },
   {
-    name: "Lucy",
+    name: "Lucja",
     role: "Office Administrator",
     bioLines: [
       "Laura leads Finance, HR, and Compliance for Staffconnecting.",
@@ -103,7 +103,7 @@ const LEADERSHIP = [
     ],
     initials: "LK",
     imageSrc: "/lucy.jpg",
-    imageAlt: "Portrait von Lucy",
+    imageAlt: "Portrait von Lucja",
   },
   {
     name: "Fenet",
@@ -388,12 +388,12 @@ export function AboutPage() {
                     </span>
                     <span className="mt-2 h-full w-px bg-gradient-to-b from-brand-300 via-[#0f1a2d]/60 to-transparent" aria-hidden />
                   </div>
-                  <div className="space-y-3">
+                  <div className="min-w-0 flex-1 space-y-3">
                     <div className="flex items-center gap-2">
                       <span className="h-0.5 w-12 bg-gradient-to-r from-brand-300 via-[#0f1a2d] to-transparent" aria-hidden />
-                      <h3 className="text-lg font-semibold text-navy-900">{service.title}</h3>
+                      <h3 className="break-words text-lg font-semibold text-navy-900">{service.title}</h3>
                     </div>
-                    <p className="text-sm leading-relaxed text-sand-700 sm:text-base">{service.description}</p>
+                    <p className="break-words text-sm leading-relaxed text-sand-700 sm:text-base">{service.description}</p>
                   </div>
                 </article>
               ))}
@@ -411,12 +411,12 @@ export function AboutPage() {
                     </span>
                     <span className="mt-2 h-full w-px bg-gradient-to-b from-brand-300 via-[#0f1a2d]/60 to-transparent" aria-hidden />
                   </div>
-                  <div className="space-y-3">
+                  <div className="min-w-0 flex-1 space-y-3">
                     <div className="flex items-center gap-2">
                       <span className="h-0.5 w-12 bg-gradient-to-r from-brand-300 via-[#0f1a2d] to-transparent" aria-hidden />
-                      <h3 className="text-lg font-semibold text-navy-900">{service.title}</h3>
+                      <h3 className="break-words text-lg font-semibold text-navy-900">{service.title}</h3>
                     </div>
-                    <p className="text-sm leading-relaxed text-sand-700 sm:text-base">{service.description}</p>
+                    <p className="break-words text-sm leading-relaxed text-sand-700 sm:text-base">{service.description}</p>
                   </div>
                 </article>
               ))}

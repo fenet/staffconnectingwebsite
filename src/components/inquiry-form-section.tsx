@@ -40,7 +40,19 @@ export function InquiryFormSection() {
   };
 
   return (
-    <section className="rounded-[2.75rem] bg-white px-4 py-8 shadow-[0_30px_90px_-70px_rgba(15,23,42,0.45)] sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden rounded-[2.75rem] bg-white/85 px-4 py-8 shadow-[0_30px_90px_-70px_rgba(15,23,42,0.45)] sm:bg-white sm:px-6 lg:px-8">
+      <div
+        className="pointer-events-none absolute inset-0 sm:hidden"
+        style={{
+          backgroundImage: "url('/contact.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          filter: "grayscale(100%) opacity(0.35)",
+        }}
+        aria-hidden
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#0f1a2d]/25 to-[#0f1a2d]/35 sm:hidden" aria-hidden />
+
       <div className="mx-auto grid w-full gap-6 lg:grid-cols-[60%_40%] lg:items-start">
         <div className="p-0">
           <div className="text-left">
@@ -193,7 +205,7 @@ export function InquiryFormSection() {
           </form>
         </div>
 
-        <div>
+        <div className="hidden sm:block">
           <img
             src="/contact.jpg"
             alt="Kontakt"
